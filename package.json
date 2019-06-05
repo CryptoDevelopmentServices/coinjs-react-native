@@ -83,7 +83,7 @@
     "standard": "standard",
     "test": "npm install",
     "unit": "tape test/index.js",
-    "postinstall": "rn-nodeify --install --hack"
+    "postinstall": "/ rn-nodeify --install --hack"
   },
   "version": "1.0.0",
   "react-native": {
