@@ -1,8 +1,7 @@
 {
   "_args": [
     [
-      "coinjs@1.0.0",
-      "/Users/pydeus/Desktop/projects/microbitcoin-mobile-app"
+      "coinjs@1.0.0"
     ]
   ],
   "_from": "coinjs@1.0.0",
@@ -31,6 +30,7 @@
     "url": " http://github.com/OutCast3k/coinjs/issues"
   },
   "dependencies": {
+    "rn-nodeify": "github:tradle/rn-nodeify",
     "@tradle/react-native-http": "^2.0.1",
     "assert": "^1.4.1",
     "browserify-zlib": "^0.1.4",
@@ -63,8 +63,7 @@
   },
   "description": "Coinbin functions",
   "devDependencies": {
-    "standard": "*",
-    "rn-nodeify": "github:tradle/rn-nodeify"
+    "standard": "*"
   },
   "files": [
     "./index.js"
@@ -82,7 +81,7 @@
   },
   "scripts": {
     "standard": "standard",
-    "test": "npm run standard && npm run unit",
+    "test": "npm install",
     "unit": "tape test/index.js",
     "postinstall": "./node_modules/.bin/rn-nodeify --install --hack"
   },
