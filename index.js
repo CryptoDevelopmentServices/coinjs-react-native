@@ -1818,7 +1818,7 @@ module.exports = function() {
                     asBytes: !0
                 }));
                 var y = ft.numToBytes(this.lock_time, 4);
-                e |= forkid;
+                // e |= forkid;
                 var d = ft.numToBytes(e, 4),
                     v = [];
                 v = (v = (v = (v = (v = (v = (v = (v = (v = (v = v.concat(o)).concat(h)).concat(c)).concat(p)).concat(i)).concat(n)).concat(f)).concat(l)).concat(y)).concat(d);
@@ -1897,7 +1897,7 @@ module.exports = function() {
             },
             transactionSig: function(t, e, r, i) {
                 var n = r || 1;
-                n |= forkid;
+                // n |= forkid;
                 var s, o, u, a, h = i || Crypto.util.hexToBytes(this.transactionHash(t, n));
                 if (h) {
                     var c = EllipticCurve.getSECCurveByName("secp256k1"),
