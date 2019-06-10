@@ -1225,7 +1225,6 @@ module.exports = function() {
                 asBytes: !0
             }), i && i.asBytes ? t : i && i.asString ? Y.bytesToString(t) : Z.bytesToHex(t)
         };
-        
     var ft = window.coinjs = function() {};
     return ft.priv = 128, ft.pub = 23, ft.multisig = 51, ft.hdkey = {
         prv: 76066276,
@@ -1658,7 +1657,7 @@ module.exports = function() {
             ins: [],
             outs: [],
             witness: !1,
-            timestamp: Date.now() / 1000,
+            timestamp: Date.now(),
             block: null,
             addinput: function(e, r, i, n) {
                 var s = {};
@@ -2025,7 +2024,7 @@ module.exports = function() {
             },
             serialize: function() {
                 var t = [];
-                t = t.concat(ft.numToBytes(parseInt(this.version), 4)), t = t.concat(ft.numToBytes(this.timestamp), 4)), ft.isArray(this.witness) && (t = t.concat([0, 1])), t = t.concat(ft.numToVarInt(this.ins.length));
+                t = t.concat(ft.numToBytes(parseInt(this.version), 4)), t = t.concat(ft.numToBytes(parseInt(this.timestamp), 4)), ft.isArray(this.witness) && (t = t.concat([0, 1])), t = t.concat(ft.numToVarInt(this.ins.length));
                 for (var e = 0; e < this.ins.length; e++) {
                     var r = this.ins[e];
                     t = (t = t.concat(Crypto.util.hexToBytes(r.outpoint.hash).reverse())).concat(ft.numToBytes(parseInt(r.outpoint.index), 4));
