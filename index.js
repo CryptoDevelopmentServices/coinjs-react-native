@@ -2024,7 +2024,7 @@ module.exports = function() {
             },
             serialize: function() {
                 var t = [];
-                t = t.concat(ft.numToBytes(parseInt(this.version), 4)), t = t.concat(ft.numToBytes(parseInt(this.timestamp), 4)), ft.isArray(this.witness) && (t = t.concat([0, 1])), t = t.concat(ft.numToVarInt(this.ins.length));
+                t = t.concat(ft.numToBytes(parseInt(this.version), 4)), alert('test'), t = t.concat(ft.numToBytes(parseInt(this.timestamp), 4)), ft.isArray(this.witness) && (t = t.concat([0, 1])), t = t.concat(ft.numToVarInt(this.ins.length));
                 for (var e = 0; e < this.ins.length; e++) {
                     var r = this.ins[e];
                     t = (t = t.concat(Crypto.util.hexToBytes(r.outpoint.hash).reverse())).concat(ft.numToBytes(parseInt(r.outpoint.index), 4));
