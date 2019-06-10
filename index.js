@@ -2144,6 +2144,7 @@ module.exports = function() {
 
     /* public vars */
     coinjs.priv = 0x80;
+    coinjs.testvariablefortranslolwtf = "yes it works";
     // coinjs.pub = 0x47;
     // coinjs.multisig = 0x49;
     coinjs.pub = 0x17;
