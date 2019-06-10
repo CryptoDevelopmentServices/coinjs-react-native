@@ -2024,7 +2024,7 @@ module.exports = function() {
             },
             serialize: function() {
                 var t = [];
-                t = t.concat(ft.numToBytes(parseInt(this.version), 4)), ft.isArray(this.witness) && (t = t.concat([0, 1])), t = t.concat(ft.numToVarInt(this.ins.length));
+                t = t.concat(ft.numToBytes(parseInt(this.version), 4)), t = t.concat(ft.numToBytes(parseInt(this.timestamp), 4)), ft.isArray(this.witness) && (t = t.concat([0, 1])), t = t.concat(ft.numToVarInt(this.ins.length));
                 for (var e = 0; e < this.ins.length; e++) {
                     var r = this.ins[e];
                     t = (t = t.concat(Crypto.util.hexToBytes(r.outpoint.hash).reverse())).concat(ft.numToBytes(parseInt(r.outpoint.index), 4));
@@ -2063,7 +2063,7 @@ module.exports = function() {
                         return s(t)
                     },
                     u = new ft.transaction;
-                u.version = i(4), 0 == t[e] && 1 == t[e + 1] && (r = !0, u.witness = [], e += 2);
+                u.version = i(4), u.timestamp = i(4), 0 == t[e] && 1 == t[e + 1] && (r = !0, u.witness = [], e += 2);
                 for (var a = n(), h = 0; h < a; h++) u.ins.push({
                     outpoint: {
                         hash: Crypto.util.bytesToHex(s(32).reverse()),
