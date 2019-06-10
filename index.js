@@ -1657,7 +1657,7 @@ module.exports = function() {
             ins: [],
             outs: [],
             witness: !1,
-            timestamp: null,
+            timestamp: Date.now(),
             block: null,
             addinput: function(e, r, i, n) {
                 var s = {};
