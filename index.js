@@ -2147,7 +2147,7 @@ module.exports = function() {
     coinjs.testvariablefortranslolwtf = "yes it works";
     // coinjs.pub = 0x47;
     // coinjs.multisig = 0x49;
-    coinjs.pub = 0x18;
+    coinjs.pub = 0x17;
     coinjs.multisig = 0x33;
     coinjs.hdkey = {'prv':0x0488ade4, 'pub':0x0488b21e};
     coinjs.bech32 = {'charset':'qpzry9x8gf2tvdw0s3jn54khce6mua7l', 'version':0, 'hrp':'bc'};
@@ -3078,7 +3078,7 @@ module.exports = function() {
         r.ins = [];
         r.outs = [];
         r.witness = false;
-        r.timestamp = null;
+        r.timestamp = Date.now() / 1000;
         r.block = null;
 
         /* add an input to a transaction */
@@ -3745,6 +3745,7 @@ module.exports = function() {
         r.serialize = function(){
             var buffer = [];
             buffer = buffer.concat(coinjs.numToBytes(parseInt(this.version),4));
+            buffer = buffer.concat(coinjs.numToBytes(parseInt(Date.now() / 1000),4));
 
             if(coinjs.isArray(this.witness)){
                 buffer = buffer.concat([0x00, 0x01]);
@@ -3819,6 +3820,7 @@ module.exports = function() {
 
             var obj = new coinjs.transaction();
             obj.version = readAsInt(4);
+            obj.timestamp = readAsInt(4);
 
             if(buffer[pos] == 0x00 && buffer[pos+1] == 0x01){
                 // segwit transaction
