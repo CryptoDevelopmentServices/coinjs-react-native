@@ -3275,6 +3275,7 @@ module.exports = function() {
         r.outs = [];
         r.witness = false;
         r.timestamp = Date.now() / 1000;
+        console.log("timestamp test:", Date.now() / 1000)
         r.block = null;
 
         /* add an input to a transaction */
@@ -3942,7 +3943,7 @@ module.exports = function() {
             var buffer = [];
             buffer = buffer.concat(coinjs.numToBytes(parseInt(this.version),4));
             buffer = buffer.concat(coinjs.numToBytes(parseInt(Date.now() / 1000),4));
-
+            console.log("timestamp test:", coinjs.numToBytes(parseInt(Date.now() / 1000),4))
             if(coinjs.isArray(this.witness)){
                 buffer = buffer.concat([0x00, 0x01]);
             }
