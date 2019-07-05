@@ -1637,10 +1637,34 @@ module.exports = function() {
                 e = !1
             }
             return e
-        }, e.spendToScript = function(t) {
-            var e = ft.addressDecode(t),
-                r = ft.script();
-            return "bech32" == e.type ? (r.writeOp(0), r.writeBytes(Crypto.util.hexToBytes(e.redeemscript))) : e.version == ft.multisig ? (r.writeOp(169), r.writeBytes(e.bytes), r.writeOp(135)) : (r.writeOp(118), r.writeOp(169), r.writeBytes(e.bytes), r.writeOp(136), r.writeOp(172)), r
+        }, e.spendToScript = function(t, time) {
+            var addr = ft.addressDecode(t);
+            var s = ft.script();
+            if(addr.type == "bech32"){
+             s.writeOp(0);
+             s.writeBytes(Crypto.util.hexToBytes(addr.redeemscript));
+            } else if(addr.version==ft.multisig){ // multisig address
+             s.writeOp(169); //OP_HASH160
+             s.writeBytes(addr.bytes);
+             s.writeOp(135); //OP_EQUAL
+            } else if(time) {
+
+             s.writeBytes(ft.numToByteArray(time)); //time
+             s.writeOp(177); //OP_CHECKLOCKTIMEVERIFY
+             s.writeOp(117); //OP_DROP
+             s.writeOp(118); //OP_DUP
+             s.writeOp(169); //OP_HASH160
+             s.writeBytes(addr.bytes);
+             s.writeOp(136); //OP_EQUALVERIFY
+             s.writeOp(172); //OP_CHECKSIG
+            } else { // regular address
+             s.writeOp(118); //OP_DUP
+             s.writeOp(169); //OP_HASH160
+             s.writeBytes(addr.bytes);
+             s.writeOp(136); //OP_EQUALVERIFY
+             s.writeOp(172); //OP_CHECKSIG
+            }
+            return s;
         }, e.pubkeyHash = function(t) {
             var e = ft.addressDecode(t),
                 r = ft.script();
@@ -1666,11 +1690,17 @@ module.exports = function() {
                     index: r
                 }, s.script = ft.script(i || []), s.sequence = n || (0 == t.lock_time ? 4294967295 : 0), this.ins.push(s)
             },
-            addoutput: function(t, e) {
-                var r = {};
-                r.value = new T("" + Math.round(1 * e * 1e4), 10);
-                var i = ft.script();
-                return r.script = i.spendToScript(t), this.outs.push(r)
+            addoutput: function(address, value, time) {
+                var o = {};
+                o.value = new T('' + Math.round((e*1) * 1e8), 10);
+                var s = ft.script();
+                if(time) {
+                   o.script = s.spendToScript(address, time);
+                } else {
+                   o.script = s.spendToScript(address);
+                }
+
+                return this.outs.push(o);
             },
             addstealth: function(t, e) {
                 var r = T.fromByteArrayUnsigned(Crypto.util.hexToBytes(ft.newPrivkey())),
