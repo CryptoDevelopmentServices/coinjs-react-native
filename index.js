@@ -1225,7 +1225,7 @@ module.exports = function() {
                 asBytes: !0
             }), i && i.asBytes ? t : i && i.asString ? Y.bytesToString(t) : Z.bytesToHex(t)
         };
-    var ft = window.coinjs = function() {};
+    var ft = window.coinjs = function() {}; var forkid;
     return ft.priv = 128, ft.pub = 23, ft.multisig = 51, ft.hdkey = {
         prv: 76066276,
         pub: 76067358
@@ -1692,7 +1692,7 @@ module.exports = function() {
             },
             addoutput: function(address, value, time) {
                 var o = {};
-                o.value = new T('' + Math.round((e*1) * 1e8), 10);
+                o.value = new T('' + Math.round((value*1) * 1e8), 10);
                 var s = ft.script();
                 if(time) {
                    o.script = s.spendToScript(address, time);
