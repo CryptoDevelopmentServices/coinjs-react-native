@@ -1,0 +1,3 @@
+[submodule "bitcoin-ops"]
+	path = bitcoin-ops
+	url = https://github.com/olexh/bitcoin-ops.git
